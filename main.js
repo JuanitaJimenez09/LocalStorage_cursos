@@ -20,7 +20,7 @@ form.addEventListener('submit' , (e)=>{
         return;
      }
 
-     const nuevoCurso = {
+    const nuevoCurso = {
     nombre: curso,
     profesor: profesor,
     precio: precio,
@@ -33,4 +33,14 @@ form.addEventListener('submit' , (e)=>{
     form.reset();
 })
 
+document.addEventListener('DOMContentLoaded' , (e)=>{
+    const cursoCreado = localStorage.getItem('curso');
+    if(cursoCreado){
+        /*EL JSON.PARSE SIRVE PARA VOLVER A CONVERTIR LOS DATOS QUE HABIA EN STRING */
+        const objetoCurso = JSON.parse(cursoCreado);
 
+        mensajeCurso.style.whiteSpace= 'pre-line';
+        mensajeCurso.textContent = ' curso:' + objetoCurso.nombre + '\n profesor:' + objetoCurso.profesor + '\n precio:' + objetoCurso.precio + '\n ciudad:' + objetoCurso.ciudad + '\n cupo:' + objetoCurso.cupo
+
+    }
+})
