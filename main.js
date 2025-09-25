@@ -1,53 +1,36 @@
-const formulario = document.getElementById('formulario');
-const input = document.getElementById('nombre');
-const h2 = document.getElementById('saludo');
-const btnBorrar = document.getElementById('borrar');
-const usuarioCreado = document.getElementById('usuario-creado');
+const form = document.getElementById('formulario_cursos');
+const inputCurso = document.getElementById('nombre_curso');
+const inputProfe = document.getElementById('profesor');
+const inputPrecio = document.getElementById('precio');
+const inputCiudad = document.getElementById('ciudad');
+const inputCupo = document.getElementById('cupo');
+const mensajeCurso = document.getElementById('mensaje_curso');
+const btnDelete = document.getElementById('borrar curso');
 
-
-
-
-document.addEventListener('DOMContentLoaded', ()=>{
-    const usuarioGuardado = localStorage.getItem('usuario');
-    if(usuarioGuardado){
-        usuarioCreado.textContent = 'bienvenido de nuevo ' + usuarioGuardado;
-    }
-
-})
-
-formulario.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    const nombre = input.value.trim();
-
-    if(nombre==''){
-        alert('Es necesario ingresar tu nombre ');
+form.addEventListener('submit' , (e)=>{
+     e.preventDefault();
+     const curso = inputCurso.value.trim();
+     const profesor = inputProfe.value.trim();
+     const precio = inputPrecio.value.trim();
+     const ciudad = inputCiudad.value.trim();
+     const cupo = inputCupo.value.trim();
+     
+     if(curso=="" || profesor=="" || precio=="" || ciudad=="" || cupo==""){
+        alert('Tienes que  completar todos los campos');
         return;
-    }
+     }
 
-    localStorage.setItem('usuario', nombre);
-    h2.textContent = 'Bienvenido ' + nombre;
-    input.value='';
+     const nuevoCurso = {
+    nombre: curso,
+    profesor: profesor,
+    precio: precio,
+    ciudad: ciudad, 
+    cupo: cupo
 
+
+}
+    localStorage.setItem('curso', JSON.stringify(nuevoCurso))
+    form.reset();
 })
 
-document.addEventListener('DOMContentLoaded', ()=>{
-    const usuarioGuardado = localStorage.getItem('usuario');
-    if(usuarioGuardado){
-        saludo.textContent = 'Bienvenido de nuevo ' + usuarioGuardado;
 
-    }
-    
-})
-
-btnBorrar.addEventListener('click' , ()=>{
-    localStorage.removeItem('usuario');
-    saludo.textContent ='Bienvenido usuario indefinido';
-})
-
-document.addEventListener('DOMContentLoaded', ()=>{
-    const saludo = localStorage.getItem('usuario');
-    if(saludo){
-        saludo.textContent = 'bienvenido de nuevo ' + saludo;
-    }
-
-})
