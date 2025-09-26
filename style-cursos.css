@@ -1,0 +1,17 @@
+table{
+    border: 1px solid black;
+    margin: 0 auto;
+    width: 70%;
+}
+
+table td, table tr{
+    border: 1px solid rgb(174, 120, 225);
+}
+
+table thead{
+    background: rgba(149, 149, 242, 0.656);
+}
+
+table thead td{
+    padding: 10px;
+}

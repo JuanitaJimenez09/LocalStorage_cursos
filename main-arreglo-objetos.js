@@ -28,45 +28,32 @@ form.addEventListener('submit' , (e)=>{
     cupo: cupo
 
 
-}
-    localStorage.setItem('curso', JSON.stringify(nuevoCurso))
-    form.reset();
+} 
+/*CAPTURAMOS EL ARREGLO EXISTENTE EN EL LOCAL STORAGE O LO CREAMOS VACIO SI NO EXISTE PREVIAMENTE.*/
 
-    const cursoCreado = localStorage.getItem('curso');
-   
-        /*EL JSON.PARSE SIRVE PARA VOLVER A CONVERTIR LOS DATOS QUE HABIA EN STRING */
-        const nuevoCreado = JSON.parse(cursoCreado);
+const cursosGuardados = JSON.parse(localStorage.getItem('cursos')) || [];
+/*AGREGAMOS AL ARREGLO[] CURSOS GUARDADOS EL NUEVO CURSO */
+cursosGuardados.push(nuevoCurso)
 
-        mensajeCurso.style.whiteSpace= 'pre-line';
-        mensajeCurso.textContent = ' curso:' + nuevoCreado.nombre + '\n profesor:' + nuevoCreado.profesor + '\n precio:' + nuevoCreado.precio + '\n ciudad:' + nuevoCreado.ciudad + '\n cupo:' + nuevoCreado.cupo
-
-        inputCurso.value ="",
-        inputProfe.value = "";
-        inputPrecio.value = "";
-        inputCiudad.value = "";
-        inputCupo.value = "";
-
-
-
-
+localStorage.setItem('cursos', JSON.stringify(cursosGuardados))
+form.reset();
 })
 
 document.addEventListener('DOMContentLoaded' , (e)=>{
     const cursoCreado = localStorage.getItem('curso');
     if(cursoCreado){
         /*EL JSON.PARSE SIRVE PARA VOLVER A CONVERTIR LOS DATOS QUE HABIA EN STRING */
-        const nuevoCurso = JSON.parse(cursoCreado);
+        const objetoCurso = JSON.parse(cursoCreado);
 
         mensajeCurso.style.whiteSpace= 'pre-line';
-        mensajeCurso.textContent = ' curso:' + nuevoCurso.nombre + '\n profesor:' + nuevoCurso.profesor + '\n precio:' + nuevoCurso.precio + '\n ciudad:' + nuevoCurso.ciudad + '\n cupo:' + nuevoCurso.cupo
-
-      
+        mensajeCurso.textContent = ' curso:' + objetoCurso.nombre + '\n profesor:' + objetoCurso.profesor + '\n precio:' + objetoCurso.precio + '\n ciudad:' + objetoCurso.ciudad + '\n cupo:' + objetoCurso.cupo
 
     }
 })
 
-
 btnDelete.addEventListener('click' , ()=>{
-    localStorage.removeItem('curso');
+    localStorage.removeItem('cursos');
     mensajeCurso.textContent = 'Aquí se mostrara el curso indefinido'
 })
+
+
